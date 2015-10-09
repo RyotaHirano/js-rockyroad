@@ -29,7 +29,7 @@ describe('flatten-deep', () => {
     const actual = func([
       [2[3, 5], ''],
       [4, 5, [7, 8], [[[{}]]], () => {}],
-      [1, [[4, false]]true, null]
+      [1, [[4, false]], true, null]
     ]);
 
     const expected = [
