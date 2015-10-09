@@ -9,7 +9,7 @@ describe('flatten-deep', () => {
 
   it('argument is immutable', () => {
     const data = [
-      [[]]
+      [[]],
       [],
       [[[]]]
     ];
@@ -17,7 +17,7 @@ describe('flatten-deep', () => {
     func(data);
 
     const expected = [
-      [[]]
+      [[]],
       [],
       [[[]]]
     ];
@@ -27,8 +27,8 @@ describe('flatten-deep', () => {
 
   it('case 1', () => {
     const actual = func([
-      [2[3, 5], '']
-      [4, 5, 7, 8, {}, () => {}],
+      [2[3, 5], ''],
+      [4, 5, [7, 8], [[[{}]]], () => {}],
       [1, [[4, false]]true, null]
     ]);
 
