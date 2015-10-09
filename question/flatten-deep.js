@@ -14,5 +14,23 @@
 */
 
 export default function(array) {
+  var resultArray = [];
 
+  function arrayFlatten(data) {
+  	if (Array.isArray(data)) {
+  		flattenDeep(data);
+  	} else {
+  		resultArray.push(data);
+  	}
+  }
+
+  function flattenDeep(array) {
+  	array.slice().map(function(data) {
+  		arrayFlatten(data);
+  	});
+
+  	return resultArray;
+  }
+
+  return flattenDeep(array);
 }
