@@ -35,11 +35,12 @@ describe('get-num-4math-operate', () => {
 
   it('case 3', () => {
     const actual = func(10, {
+      multi: [4, 1],
       div: 11,
       sub: 2
     });
 
-    const expected = -1;
+    const expected = 1;
 
     assert(actual === expected);
   });
