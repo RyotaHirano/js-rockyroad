@@ -19,7 +19,7 @@ describe('concat-keys', () => {
       },
       {
         animal: 'elephant',
-        fruits: 'peath'
+        fruits: 'peach'
       }
     ];
 
@@ -36,7 +36,7 @@ describe('concat-keys', () => {
       },
       {
         animal: 'elephant',
-        fruits: 'peath'
+        fruits: 'peach'
       }
     ];
 
@@ -55,14 +55,14 @@ describe('concat-keys', () => {
       },
       {
         animal: 'elephant',
-        fruits: 'peath'
+        fruits: 'peach'
       }
     ]);
 
     const expected = [
       {
         animal: ['elephant', 'flamingo', 'tiger'],
-        fruits: ['apple', 'grape', 'peath']
+        fruits: ['apple', 'grape', 'peach']
       }
     ];
 
@@ -81,14 +81,14 @@ describe('concat-keys', () => {
       },
       {
         animal: 'dog',
-        fruits: 'peath'
+        fruits: 'peach'
       }
     ]);
 
     const expected = [
       {
         animal: ['cat', 'dog'],
-        fruits: ['apple', 'grape', 'peath']
+        fruits: ['apple', 'grape', 'peach']
       }
     ];
 
