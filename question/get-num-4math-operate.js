@@ -18,5 +18,47 @@
 */
 
 export default function(number, object) {
+  var myNumber = 0;
 
+  function getMathResult(property, data) {
+    if (Array.isArray(data)) {
+      data.map(function(value) {
+        doMath(value, property);
+      });
+    } else {
+      doMath(data, property);
+    }
+  }
+
+  function doMath(value, property) {
+    switch (property) {
+      case 'add':
+        myNumber = myNumber + value;
+        break;
+      case 'sub':
+        myNumber = myNumber - value;
+        break;
+      case 'multi':
+        myNumber = myNumber * value;
+        break;
+      case 'div':
+        myNumber = myNumber / value;
+        break;
+      default:
+        break;
+    }
+  }
+
+  function getMax4MathOperate(number, object) {
+    myNumber = number;
+    for (var key in object) {
+      if (object.hasOwnProperty(key)) {
+        getMathResult(key, object[key]);
+      }
+    }
+
+    return Math.floor(myNumber);
+  }
+
+  return getMax4MathOperate(number, object);
 }
