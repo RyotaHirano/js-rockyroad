@@ -20,5 +20,24 @@
 */
 
 export default function(object) {
+  var myObj = {};
 
+  function invertKeyValue(object) {
+
+    for (var key in object) {
+      if ((object.hasOwnProperty(key))) {
+        var myKey = object[key];
+        var targetArray = [];
+        if (Array.isArray(myObj[myKey])) {
+          targetArray = myObj[myKey];
+        }
+        targetArray.push(key);
+        myObj[myKey] = targetArray;
+      }
+    }
+
+    return myObj;
+  }
+
+  return invertKeyValue(object);
 }
