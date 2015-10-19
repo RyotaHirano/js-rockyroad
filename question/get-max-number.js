@@ -6,11 +6,58 @@
   @returns {Number}
 */
 
+var searchIndex = 0;
+var nowIsRarge = false;
+
+function whitchRargeValue(p, c) {
+  var nextIndex = searchIndex + 1;
+  var pFirstValue = parseInt(p.slice(searchIndex, nextIndex));
+  var cFirstValue = parseInt(c.slice(searchIndex, nextIndex));
+
+  if (!isNaN(pFirstValue) && !isNaN(cFirstValue)) {
+    if (pFirstValue != cFirstValue) {
+      if (pFirstValue > cFirstValue) {
+        nowIsRarge = true;
+      } else {
+        nowIsRarge = false;
+      }
+    } else {
+      searchIndex++;
+      whitchRargeValue(p, c);
+    }
+  } else {
+    if (!isNaN(pFirstValue)) {
+      var pBeforeFirstValue = parseInt(p.slice(searchIndex - 1, nextIndex - 1));
+      if (!isNaN(pBeforeFirstValue)) {
+        if (pBeforeFirstValue > pFirstValue) {
+          nowIsRarge = false;
+        } else {
+          nowIsRarge = true;
+        }
+      } else {
+        nowIsRarge = true;
+      }
+    } else {
+      var cBeforeFirstValue = parseInt(c.slice(searchIndex - 1, nextIndex - 1));
+      if (isNaN(cBeforeFirstValue)) {
+        if (cBeforeFirstValue > cFirstValue) {
+          nowIsRarge = false;
+        } else {
+          nowIsRarge = true;
+        }
+      } else {
+        nowIsRarge = true;
+      }
+    }
+  }
+
+  searchIndex = 0;
+  return nowIsRarge;
+}
+
 export default function(array) {
   var tmpArray = [];
-  var searchIndex = 0;
-  var nowIsRarge = false;
-  var maxNumber = '';
+  var _array = array.slice();
 
   function addArray(value) {
     var pushArray = false;
@@ -41,59 +88,15 @@ export default function(array) {
     return false;
   }
 
-  function whitchRargeValue(p, c) {
-    var nextIndex = searchIndex + 1;
-    var pFirstValue = parseInt(p.slice(searchIndex, nextIndex));
-    var cFirstValue = parseInt(c.slice(searchIndex, nextIndex));
-
-    if (!isNaN(pFirstValue) && !isNaN(cFirstValue)) {
-      if (pFirstValue != cFirstValue) {
-        if (pFirstValue > cFirstValue) {
-          nowIsRarge = true;
-        } else {
-          nowIsRarge = false;
-        }
-      } else {
-        searchIndex++;
-        whitchRargeValue(p, c);
-      }
-    } else {
-      if (!isNaN(pFirstValue)) {
-        var pBeforeFirstValue = parseInt(p.slice(searchIndex - 1, nextIndex - 1));
-        if (!isNaN(pBeforeFirstValue)) {
-          if (pBeforeFirstValue > pFirstValue) {
-            nowIsRarge = false;
-          } else {
-            nowIsRarge = true;
-          }
-        } else {
-          nowIsRarge = true;
-        }
-      } else {
-        var cBeforeFirstValue = parseInt(c.slice(searchIndex - 1, nextIndex - 1));
-        if (isNaN(cBeforeFirstValue)) {
-          if (cBeforeFirstValue > cFirstValue) {
-            nowIsRarge = false;
-          } else {
-            nowIsRarge = true;
-          }
-        } else {
-          nowIsRarge = true;
-        }
-      }
-    }
-
-    searchIndex = 0;
-    return nowIsRarge;
-  }
-
   function getMaxNumber(array) {
-    var _array = array.slice().map(function(value) {
+    var maxNumber = '';
+
+    _array.forEach(function(value) {
       var strValue = value.toString(10);
       addArray(strValue);
     }, 0);
 
-    tmpArray.map(function(data) {
+    tmpArray.forEach(function(data) {
       maxNumber = maxNumber + data + '';
     });
 
