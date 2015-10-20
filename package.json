@@ -1,7 +1,6 @@
 {
   "name": "js-rockyroad",
-  "version": "0.0.1", 
-  "private": true,
+  "version": "0.0.2",
   "description": "JavaScript a rocky road ahead.",
   "scripts": {
     "test": "mocha --compilers js:espower-babel/guess",
